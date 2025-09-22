@@ -1,78 +1,63 @@
-Task 1: Data Cleaning and Preprocessing
-Project Objective
-The primary objective of this task was to clean and prepare a raw dataset (Netflix Movies and TV Shows) which contained common issues such as null values, potential duplicates, and inconsistent data formats. The goal was to transform this raw data into a clean, structured, and reliable dataset suitable for analysis and visualization.
+🧹 Task 1: Netflix Dataset - Data Cleaning & Preprocessing
+🎯 Project Objective
+The primary objective of this task was to clean and prepare the raw Netflix Movies and TV Shows dataset. The goal was to resolve common data issues like null values, potential duplicates, and inconsistent formats, ultimately transforming it into a structured and reliable dataset ready for analysis.
 
+🛠️ Tools & Libraries Used
+Language: Python
 
+Libraries: pandas, numpy
 
+Environment: Google Colab
 
-Tools Used: Python with the Pandas and NumPy libraries.
+✨ Detailed Summary of Changes
+Here is a step-by-step summary of the actions performed to clean the dataset.
 
-Detailed Summary of Changes
-The following is a detailed, step-by-step summary of the actions performed to clean the dataset.
+1. Handling Missing Values
+A crucial step to prevent errors or biased analysis. Different strategies were used for different columns.
 
-1.
-Handling Missing Values
+director, cast, country:
 
+What: Null values were replaced with the string 'Unknown'.
 
-A crucial step in data preprocessing is addressing missing data, as it can lead to errors or biased analysis. Different strategies were applied based on the nature of each column.
+Why: This preserves valuable records that would otherwise be deleted, while clearly marking that the information was not available.
 
-Categorical Data (director, cast, country):
+date_added:
 
-What: Null values in these columns were replaced with the string 'Unknown'.
+What: Missing values were filled using forward-fill (ffill) followed by backward-fill (bfill).
 
-Why: These columns contain important contextual information. Deleting the rows would result in significant data loss. By filling the nulls with 'Unknown', we preserve the records while explicitly acknowledging that the information was not available.
+Why: This is a logical approach for chronological data, assuming a missing date is likely close to the entries immediately before or after it.
 
-Date Data (date_added):
+rating, duration:
 
-What: The few missing values in this column were filled using a forward-fill (ffill) followed by a backward-fill (bfill).
+What: Missing values were filled with the mode (the most frequent value). For duration, this was done separately for 'Movie' and 'TV Show' types.
 
-Why: For chronological data, it's a reasonable assumption that a missing entry date is close to the entries before or after it. This method ensures the column is complete without introducing arbitrary dates.
+Why: Using the mode is a safe way to fill a small number of gaps without significantly affecting the column's overall distribution.
 
-Numerical/Categorical Data (rating, duration):
+2. Removing Duplicate Rows
+What: The dataset was scanned for duplicate entries using .drop_duplicates().
 
-What: Missing values were filled with the mode (the most frequently occurring value) of their respective columns. For duration, the mode was calculated separately for 'Movies' and 'TV Shows' to ensure logical imputation.
+Why: This is a fundamental step for data integrity. Duplicate records can skew results and lead to inaccurate conclusions.
 
-Why: Imputing with the mode is a standard technique when the number of missing values is small. It fills the gaps while having a minimal impact on the column's statistical distribution.
+3. Standardizing Text Values
+What: The country column was converted to lowercase, and the rating column to uppercase. Leading/trailing whitespaces were also removed.
 
-2.
-Removing Duplicate Rows
+Why: This ensures consistency, preventing values like "India" and "india" from being treated as separate categories during analysis.
 
+4. Converting Data Formats
+What: The date_added column's data type was converted from an object (string) to a proper datetime format.
 
+Why: A datetime format is essential for any time-based analysis, such as plotting trends over time or sorting by date, which is impossible with plain text.
 
-What: The entire dataset was checked for duplicate rows, and any found were removed using the .drop_duplicates() method.
+5. Renaming Column Headers
+What: Columns were renamed for better clarity: listed_in was changed to category, and release_year became release_yr.
 
-Why: Duplicate records can skew analytical results, leading to inflated counts and incorrect conclusions. Ensuring every row is unique is fundamental for data integrity. (Note: No duplicates were found in this dataset, but this check remains a critical best practice).
+Why: Clean and intuitive column names make the dataset easier to read, understand, and work with.
 
-3.
-Standardizing Text Values
+After completing these steps, the final, cleaned dataset was saved to a new file, netflix_cleaned.csv.
 
+📬 Contact Information
+Name: [Your Name]
 
-Inconsistent text formatting can cause a single category to be treated as multiple different ones.
+LinkedIn: linkedin.com/in/your-profile-url
 
-What: The country column was converted to lowercase, and the rating column was converted to uppercase. Leading/trailing whitespaces were also removed.
-
-Why: This ensures that values like "India", "india", and " india " are all treated as a single entity, allowing for accurate grouping and analysis.
-
-4.
-Converting Data Formats
-
-
-
-The data type of a column dictates what operations can be performed on it.
-
-
-What: The date_added column was converted from a generic 'object' (string) type to a datetime type.
-
-
-Why: A proper datetime format is essential for any time-based analysis, such as plotting trends over time, sorting by date, or calculating time differences. These operations are not possible when dates are stored as plain text.
-
-5.
-Renaming Column Headers
-
-
-
-What: Columns were renamed to be more intuitive and uniform. Specifically, 
-
-listed_in was renamed to category and release_year to release_yr.
-
-Why: Clean, descriptive column names improve the readability of the dataset, making the code and subsequent analyses easier to understand for anyone working with the data.
+Email: youremail@example.com
