@@ -1,82 +1,67 @@
-🧹 Netflix Dataset - Data Cleaning & Preprocessing
-🎯 Project Objective
+# 🧹 Netflix Dataset - Data Cleaning & Preprocessing
 
-The primary goal of this project is to clean and preprocess the raw Netflix Movies and TV Shows dataset. The dataset often contains missing values, duplicates, and inconsistent formats. This task resolves these issues to produce a structured and reliable dataset ready for analysis.
+## 🎯 Project Objective
+The **main goal** of this project is to clean and preprocess the raw **Netflix Movies and TV Shows dataset**.  
+The dataset often contains **missing values, duplicates, and inconsistent formats**.  
+This project resolves these issues to create a **structured and reliable dataset** ready for analysis.
 
-🛠️ Tools & Libraries Used
+---
 
-Language: Python
+## 🛠️ Tools & Libraries Used
+- **Language:** Python  
+- **Libraries:** `pandas`, `numpy`  
+- **Environment:** Google Colab  
 
-Libraries: pandas, numpy
+---
 
-Environment: Google Colab
+## ✨ Data Cleaning Steps
 
-✨ Steps Performed for Data Cleaning
-1. Handling Missing Values
+### 1️⃣ Handling Missing Values
+- **`director`, `cast`, `country`** → Null values replaced with `'Unknown'`  
+  *Reason:* Keeps records while indicating missing information.  
 
-Missing data can lead to errors or biased results. Different strategies were applied depending on the column:
+- **`date_added`** → Filled using **forward-fill (`ffill`)** and **backward-fill (`bfill`)**  
+  *Reason:* Logical for chronological data; assumes missing dates are near existing ones.  
 
-director, cast, country:
+- **`rating`, `duration`** → Filled with the **mode** (most frequent value). Duration mode calculated separately for **Movies** and **TV Shows**.  
+  *Reason:* Maintains column distribution without introducing bias.
 
-Action: Null values replaced with 'Unknown'
+---
 
-Reason: Keeps valuable records while indicating missing information clearly.
+### 2️⃣ Removing Duplicate Rows
+- Removed using **`.drop_duplicates()`**  
+- *Reason:* Ensures **data integrity** and avoids skewed analysis results.
 
-date_added:
+---
 
-Action: Missing values filled using forward-fill (ffill) and backward-fill (bfill)
+### 3️⃣ Standardizing Text Values
+- **`country`** → lowercase  
+- **`rating`** → uppercase  
+- Removed **leading/trailing whitespaces**  
+- *Reason:* Prevents treating `"India"` and `"india"` as different categories.
 
-Reason: Logical for chronological data; assumes missing dates are near available ones.
+---
 
-rating, duration:
+### 4️⃣ Converting Data Formats
+- **`date_added`** → Converted from string to **datetime format**  
+- *Reason:* Enables **time-based analysis** like trends and sorting.
 
-Action: Missing values filled with the mode (most frequent value). Duration mode was calculated separately for Movie and TV Show.
+---
 
-Reason: Safe approach to maintain column distribution without introducing bias.
+### 5️⃣ Renaming Columns
+- **`listed_in` → `category`**  
+- **`release_year` → `release_yr`**  
+- *Reason:* Cleaner, intuitive column names for better readability.
 
-2. Removing Duplicate Rows
+---
 
-Action: Duplicate entries were removed using .drop_duplicates().
+## ✅ Final Output
+The cleaned dataset is saved as:  
+**`netflix_cleaned.csv`**
 
-Reason: Ensures data integrity and prevents skewed analysis results.
+---
 
-3. Standardizing Text Values
-
-Action:
-
-country converted to lowercase
-
-rating converted to uppercase
-
-Leading/trailing whitespaces removed
-
-Reason: Ensures consistency; avoids treating values like "India" and "india" as separate categories.
-
-4. Converting Data Formats
-
-Action: date_added converted from string (object) to datetime format.
-
-Reason: Enables time-based analysis (e.g., trends, sorting) that is not possible with plain text.
-
-5. Renaming Columns
-
-Action:
-
-listed_in → category
-
-release_year → release_yr
-
-Reason: Clean and intuitive names improve readability and usability of the dataset.
-
-✅ Final Output
-
-The cleaned and preprocessed dataset has been saved as:
-netflix_cleaned.csv
-
-📬 Contact Information
-
-Name: [Your Name]
-
-LinkedIn: linkedin.com/in/your-profile-url
-
-Email: youremail@example.com
+## 📬 Contact
+- **Name:** [Your Name]  
+- **LinkedIn:** [linkedin.com/in/your-profile-url](https://linkedin.com/in/your-profile-url)  
+- **Email:** [youremail@example.com](mailto:youremail@example.com)
