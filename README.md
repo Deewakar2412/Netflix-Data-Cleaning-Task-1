@@ -62,6 +62,6 @@ The cleaned dataset is saved as:
 ---
 
 ## 📬 Contact
-- **Name:** [Your Name]  
-- **LinkedIn:** [linkedin.com/in/your-profile-url](https://linkedin.com/in/your-profile-url)  
-- **Email:** [youremail@example.com](mailto:youremail@example.com)
+- **Name:** Deewakar Kumar  
+- **LinkedIn:** [https://www.linkedin.com/in/deewakar-kumar-b61652248/](https://www.linkedin.com/in/deewakar-kumar-b61652248/)  
+- **Email:** [deewakara2412@gmail.com](mailto:deewakara2412@gmail.com)
