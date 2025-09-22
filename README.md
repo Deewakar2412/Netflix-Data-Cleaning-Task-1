@@ -1,61 +1,80 @@
-🧹 Task 1: Netflix Dataset - Data Cleaning & Preprocessing
+🧹 Netflix Dataset - Data Cleaning & Preprocessing
 🎯 Project Objective
-The primary objective of this task was to clean and prepare the raw Netflix Movies and TV Shows dataset. The goal was to resolve common data issues like null values, potential duplicates, and inconsistent formats, ultimately transforming it into a structured and reliable dataset ready for analysis.
+
+The primary goal of this project is to clean and preprocess the raw Netflix Movies and TV Shows dataset. The dataset often contains missing values, duplicates, and inconsistent formats. This task resolves these issues to produce a structured and reliable dataset ready for analysis.
 
 🛠️ Tools & Libraries Used
+
 Language: Python
 
 Libraries: pandas, numpy
 
 Environment: Google Colab
 
-✨ Detailed Summary of Changes
-Here is a step-by-step summary of the actions performed to clean the dataset.
-
+✨ Steps Performed for Data Cleaning
 1. Handling Missing Values
-A crucial step to prevent errors or biased analysis. Different strategies were used for different columns.
+
+Missing data can lead to errors or biased results. Different strategies were applied depending on the column:
 
 director, cast, country:
 
-What: Null values were replaced with the string 'Unknown'.
+Action: Null values replaced with 'Unknown'
 
-Why: This preserves valuable records that would otherwise be deleted, while clearly marking that the information was not available.
+Reason: Keeps valuable records while indicating missing information clearly.
 
 date_added:
 
-What: Missing values were filled using forward-fill (ffill) followed by backward-fill (bfill).
+Action: Missing values filled using forward-fill (ffill) and backward-fill (bfill)
 
-Why: This is a logical approach for chronological data, assuming a missing date is likely close to the entries immediately before or after it.
+Reason: Logical for chronological data; assumes missing dates are near available ones.
 
 rating, duration:
 
-What: Missing values were filled with the mode (the most frequent value). For duration, this was done separately for 'Movie' and 'TV Show' types.
+Action: Missing values filled with the mode (most frequent value). Duration mode was calculated separately for Movie and TV Show.
 
-Why: Using the mode is a safe way to fill a small number of gaps without significantly affecting the column's overall distribution.
+Reason: Safe approach to maintain column distribution without introducing bias.
 
 2. Removing Duplicate Rows
-What: The dataset was scanned for duplicate entries using .drop_duplicates().
 
-Why: This is a fundamental step for data integrity. Duplicate records can skew results and lead to inaccurate conclusions.
+Action: Duplicate entries were removed using .drop_duplicates().
+
+Reason: Ensures data integrity and prevents skewed analysis results.
 
 3. Standardizing Text Values
-What: The country column was converted to lowercase, and the rating column to uppercase. Leading/trailing whitespaces were also removed.
 
-Why: This ensures consistency, preventing values like "India" and "india" from being treated as separate categories during analysis.
+Action:
+
+country converted to lowercase
+
+rating converted to uppercase
+
+Leading/trailing whitespaces removed
+
+Reason: Ensures consistency; avoids treating values like "India" and "india" as separate categories.
 
 4. Converting Data Formats
-What: The date_added column's data type was converted from an object (string) to a proper datetime format.
 
-Why: A datetime format is essential for any time-based analysis, such as plotting trends over time or sorting by date, which is impossible with plain text.
+Action: date_added converted from string (object) to datetime format.
 
-5. Renaming Column Headers
-What: Columns were renamed for better clarity: listed_in was changed to category, and release_year became release_yr.
+Reason: Enables time-based analysis (e.g., trends, sorting) that is not possible with plain text.
 
-Why: Clean and intuitive column names make the dataset easier to read, understand, and work with.
+5. Renaming Columns
 
-After completing these steps, the final, cleaned dataset was saved to a new file, netflix_cleaned.csv.
+Action:
+
+listed_in → category
+
+release_year → release_yr
+
+Reason: Clean and intuitive names improve readability and usability of the dataset.
+
+✅ Final Output
+
+The cleaned and preprocessed dataset has been saved as:
+netflix_cleaned.csv
 
 📬 Contact Information
+
 Name: [Your Name]
 
 LinkedIn: linkedin.com/in/your-profile-url
